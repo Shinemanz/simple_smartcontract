@@ -11,7 +11,7 @@ contract Token is ERC20 {
     }
 }
 
-contract Airdrop is Ownable {
+contract AirdropToken is Ownable {
     IERC20 IERCToken;
     address[] public whitelistAddresses;
 
@@ -19,7 +19,7 @@ contract Airdrop is Ownable {
         IERCToken = _tokenAddress;
     }
 
-    function airdropToken(uint _amount) public onlyOwner payable {
+    function doAirdrop(uint _amount) public onlyOwner payable {
         for (uint i = 0; i < whitelistAddresses.length; i++) {
             IERCToken.transferFrom(msg.sender, whitelistAddresses[i], _amount);
         }
